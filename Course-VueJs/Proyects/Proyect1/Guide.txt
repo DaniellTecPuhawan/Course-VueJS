@@ -5,3 +5,11 @@ v-if: Evalúa una condición y agrega o elimina el elemento del DOM dependiendo 
 v-else: Se utiliza como alternativa a v-if y renderiza el elemento solo si el v-if inmediatamente anterior es false.
 
 v-show: Evalúa una condición y muestra u oculta el elemento mediante la propiedad CSS display, sin eliminarlo del DOM.
+
+v-bind:src vincula el atributo src de la etiqueta <img> a la propiedad imagenUrl en la instancia de Vue. Si imagenUrl cambia, el src de la imagen se actualizará automáticamente.
+
+v-for es ideal para renderizar listas de elementos dinámicamente.
+
+git add .gitignore
+git commit -m "Fix line endings"
+git push

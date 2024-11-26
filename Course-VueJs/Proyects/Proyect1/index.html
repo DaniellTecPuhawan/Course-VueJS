@@ -2,55 +2,161 @@
 <html lang="en">
   <meta charset="UTF-8">
   <title>Pruebas en Vue.js</title>
+  <style>
+    /* Centrar el contenido en la página */
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para los elementos de #app */
+    #app {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Estilo para la imagen, hacerla pequeña */
+    img {
+      width: 200px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    /* Separa las secciones */
+    .section {
+      margin-bottom: 30px;
+      text-align: center; /* Centra el contenido dentro de cada sección */
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    p, h1 {
+      font-size: 18px;
+    }
+  </style>
   <body>
+    <!-- Carga Vue.js desde un CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
     <!-- Contenedor para la funcionalidad de bienvenida -->
-    <div id="ejemplo">
+    <div id="ejemplo" class="section">
       <button v-on:click="bienvenida">Bienvenida</button>
     </div>
-  </hr>
+
     <!-- Contenedor para la funcionalidad del contador -->
-    <div id="ejemplo-1">
+    <div id="ejemplo-1" class="section">
       <button v-on:click="counter += 1">Añadir 1</button>
       <p>Se ha hecho clic en el botón de arriba {{ counter }} veces.</p>
     </div>
-  </hr>
-    <!-- Contenedor para la funcionalidad condicional -->
-    <div id="condicion">
+
+    <!-- Contenedor para la funcionalidad condicional con v-if/v-else -->
+    <div id="condicion" class="section">
       <h1 v-if="login">El usuario se ha conectado</h1>
+      <h1 v-else>El usuario no se ha conectado</h1>
     </div>
 
-    <!-- Importa Vue.js desde un CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <!-- Contenedor para la funcionalidad condicional con v-show -->
+    <div id="condicion-show" class="section">
+      <h1 v-show="login">El usuario se ha conectado</h1>
+      <h1 v-show="!login">El usuario no se ha conectado</h1>
+    </div>
+
+    <!-- Contenedor para la imagen y texto dinámico -->
+    <div id="app" class="section">
+      <img v-bind:src="img" v-bind:alt="nombre">
+      <p>Se introduce dinámicamente el atributo src y alt a la imagen</p>
+      <h1>{{ nombre }}</h1>
+    </div>
+
+    <!-- Contenedor para la lista dinámica de libros -->
+    <div id="ejemplo-libros" class="section">
+      <ul>
+        <li v-for="item in items" :key="item.libro">
+          {{ item.libro }}
+        </li>
+      </ul>
+      <p>Se puede usar la directiva v-for para generar una lista de elementos basada en un array.</p>
+    </div>
 
     <script>
       // Instancia Vue para la funcionalidad de bienvenida
       var vm = new Vue({
-        el: '#ejemplo', // Vincula Vue al div con id="ejemplo"
+        el: '#ejemplo',
         data: {
-          name: 'Vue.js' // Define datos que se usarán en el HTML y métodos
+          name: 'Vue.js'
         },
         methods: {
-          // Método que se ejecuta al hacer clic en el botón
           bienvenida: function (event) {
-            alert('Hola ' + this.name + '!'); // Muestra un saludo
-            alert(event.target.tagName); // Muestra el nombre del elemento que activó el evento
+            alert('Hola ' + this.name + '!');
+            alert(event.target.tagName);
           }
         }
       });
 
       // Instancia Vue para la funcionalidad del contador
       var ejemplo1 = new Vue({
-        el: '#ejemplo-1', // Vincula Vue al div con id="ejemplo-1"
+        el: '#ejemplo-1',
         data: {
-          counter: 0 // Inicializa el contador en 0
+          counter: 0
         }
       });
 
-      // Instancia Vue para la funcionalidad condicional
-      var condicion = new Vue({
-        el: '#condicion', // Vincula Vue al div con id="condicion"
+      // Instancia Vue para la funcionalidad condicional con v-if y v-else
+      var condicion1 = new Vue({
+        el: '#condicion',
         data: {
-          login: true // Controla si el usuario está conectado o no
+          login: true
+        }
+      });
+
+      // Instancia Vue para la funcionalidad condicional con v-show
+      var condicion2 = new Vue({
+        el: '#condicion-show',
+        data: {
+          login: false
+        }
+      });
+
+      // Instancia Vue para la funcionalidad de la imagen dinámica
+      const vue = new Vue({
+        el: '#app',
+        data() {
+          return {
+            nombre: 'Pájaro',
+            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Cyanocitta_cristata_blue_jay.jpg/1280px-Cyanocitta_cristata_blue_jay.jpg'
+          };
+        }
+      });
+
+      // Instancia Vue para la lista dinámica de libros
+      var ejemploLibros = new Vue({
+        el: '#ejemplo-libros',
+        data: {
+          items: [
+            { libro: 'Don Quijote de la Mancha' },
+            { libro: 'El principito' },
+            { libro: 'Historia de dos ciudades' },
+            { libro: 'Odisea' }
+          ]
         }
       });
     </script>
