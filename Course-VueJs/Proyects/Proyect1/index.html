@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+  <title>Pruebas en Vue.js</title>
+  <body>
+    <!-- Contenedor para la funcionalidad de bienvenida -->
+    <div id="ejemplo">
+      <button v-on:click="bienvenida">Bienvenida</button>
+    </div>
+
+    <!-- Contenedor para la funcionalidad del contador -->
+    <div id="ejemplo-1">
+      <button v-on:click="counter += 1">Añadir 1</button>
+      <p>Se ha hecho clic en el botón de arriba {{ counter }} veces.</p>
+    </div>
+
+    <!-- Contenedor para la funcionalidad condicional -->
+    <div id="condicion">
+      <h1 v-if="login">El usuario se ha conectado</h1>
+    </div>
+
+    <!-- Importa Vue.js desde un CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <script>
+      // Instancia Vue para la funcionalidad de bienvenida
+      var vm = new Vue({
+        el: '#ejemplo', // Vincula Vue al div con id="ejemplo"
+        data: {
+          name: 'Vue.js' // Define datos que se usarán en el HTML y métodos
+        },
+        methods: {
+          // Método que se ejecuta al hacer clic en el botón
+          bienvenida: function (event) {
+            alert('Hola ' + this.name + '!'); // Muestra un saludo
+            alert(event.target.tagName); // Muestra el nombre del elemento que activó el evento
+          }
+        }
+      });
+
+      // Instancia Vue para la funcionalidad del contador
+      var ejemplo1 = new Vue({
+        el: '#ejemplo-1', // Vincula Vue al div con id="ejemplo-1"
+        data: {
+          counter: 0 // Inicializa el contador en 0
+        }
+      });
+
+      // Instancia Vue para la funcionalidad condicional
+      var condicion = new Vue({
+        el: '#condicion', // Vincula Vue al div con id="condicion"
+        data: {
+          login: true // Controla si el usuario está conectado o no
+        }
+      });
+    </script>
+  </body>
+</html>

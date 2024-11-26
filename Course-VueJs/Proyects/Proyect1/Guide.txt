@@ -1,0 +1,7 @@
+npm run dev
+
+v-if: Evalúa una condición y agrega o elimina el elemento del DOM dependiendo de si la condición es true o false.
+
+v-else: Se utiliza como alternativa a v-if y renderiza el elemento solo si el v-if inmediatamente anterior es false.
+
+v-show: Evalúa una condición y muestra u oculta el elemento mediante la propiedad CSS display, sin eliminarlo del DOM.
