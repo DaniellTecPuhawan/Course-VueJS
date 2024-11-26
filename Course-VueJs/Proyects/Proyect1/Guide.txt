@@ -13,3 +13,7 @@ v-for es ideal para renderizar listas de elementos dinámicamente.
 git add .gitignore
 git commit -m "Fix line endings"
 git push
+
+npm install -g @vue/cli
+vue --version
+npm update -g @vue/cli  
